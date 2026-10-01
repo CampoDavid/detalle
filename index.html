@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para la mejor mamá del mundo 💖</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 20%, rgba(30, 80, 220, 0.25), transparent 50%),
+                        linear-gradient(180deg, #03081c 0%, #081d42 50%, #020714 100%);
+            color: #ffffff;
+        }
+
+        /* Fondo animado de destellos */
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #a3c2ff;
+            border-radius: 50%;
+            opacity: 0.6;
+            box-shadow: 0 0 6px #70a1ff;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Pantalla de Entrada */
+        .intro {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+            text-align: center;
+            background: radial-gradient(circle, rgba(20, 60, 160, 0.4), transparent 60%), #040a1e;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .intro.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: floatIcon 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(70, 130, 255, 0.6));
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        .intro h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .intro h1 span {
+            color: #70a1ff;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(112, 161, 255, 0.4);
+        }
+
+        .intro p {
+            max-width: 500px;
+            color: #b3cbff;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+        }
+
+        .open-btn {
+            border: none;
+            padding: 16px 38px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #030a1e;
+            background: linear-gradient(135deg, #70a1ff, #3867d6);
+            box-shadow: 0 0 25px rgba(60, 120, 255, 0.4), 0 8px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px) scale(1.04);
+            background: linear-gradient(135deg, #8cb5ff, #4b7bec);
+            box-shadow: 0 0 35px rgba(80, 140, 255, 0.6), 0 12px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        /* Encabezado Principal */
+        .hero {
+            position: relative;
+            text-align: center;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 12vh;
+            overflow: hidden;
+        }
+
+        .tagline {
+            color: #70a1ff;
+            font-size: 0.95rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            line-height: 1.1;
+            font-weight: 200;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.6s forwards;
+        }
+
+        .hero h1 strong {
+            display: block;
+            color: #70a1ff;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(112, 161, 255, 0.4);
+        }
+
+        .hero-subtitle {
+            max-width: 600px;
+            margin-top: 25px;
+            color: #b3cbff;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Jardín de flores inferior */
+        .flower-field {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            pointer-events: none;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding: 0 5%;
+            z-index: 5;
+        }
+
+        .garden-item {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            animation: floatGarden 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+        }
+
+        .garden-item:nth-child(even) { animation-delay: 1s; }
+        .garden-item:nth-child(3n) { animation-delay: 2s; }
+
+        @keyframes floatGarden {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        /* Carta de Agradecimiento */
+        .letter-section {
+            min-height: 100vh;
+        }
+
+        .letter {
+            position: relative;
+            width: min(720px, 92vw);
+            padding: 50px clamp(20px, 6vw, 60px);
+            border: 1px solid rgba(112, 161, 255, 0.3);
+            border-radius: 24px;
+            background: rgba(8, 25, 60, 0.5);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), inset 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .letter::before {
+            content: "🧸";
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 45px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+        }
+
+        .letter small {
+            display: block;
+            text-align: center;
+            color: #70a1ff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .letter h2 {
+            text-align: center;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .letter p {
+            color: #d0e0ff;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #70a1ff;
+            font-weight: 600;
+        }
+
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+            color: #70a1ff;
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        /* Sección Final */
+        .final-section {
+            min-height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .final-card {
+            background: rgba(10, 30, 75, 0.6);
+            border: 1px solid rgba(112, 161, 255, 0.25);
+            padding: 40px 30px;
+            border-radius: 20px;
+            max-width: 550px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+        }
+
+        .final-card h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .final-card h2 span {
+            color: #70a1ff;
+            font-weight: 600;
+        }
+
+        .final-card p {
+            color: #b3cbff;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .bear-display {
+            font-size: 90px;
+            margin: 20px 0;
+            animation: bearBounce 2s infinite ease-in-out;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        @keyframes bearBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.05); }
+        }
+
+        /* Partículas en clics */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 20px;
+            animation: particleFloat 2.2s ease-out forwards;
+        }
+
+        @keyframes particleFloat {
+            from {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translate(calc((var(--x) - 0.5) * 220px), -160px) rotate(180deg) scale(0.2);
+            }
+        }
+
+        @media(max-width: 600px) {
+            .letter { padding: 35px 20px; }
+            .flower-field { height: 160px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars" id="stars"></div>
+
+    <!-- Pantalla Inicial -->
+    <div class="intro" id="intro">
+        <div class="intro-icon">🧸💙</div>
+        <h1>Para la persona <span>más especial de mi vida</span></h1>
+        <p>Un pequeño detalle creado con mucho cariño para agradecerte todo lo que haces por mí...</p>
+        <button class="open-btn" onclick="openGift()">Abrir mensaje ✨</button>
+    </div>
+
+    <main>
+        <!-- Sección Banner -->
+        <section class="hero">
+            <div class="tagline">CON TODO MI AMOR</div>
+            <h1>Gracias por todo, <strong>Mamá</strong></h1>
+            <p class="hero-subtitle">
+                Por tu amor incondicional, tu paciencia infinita y por ser el pilar que ilumina cada uno de mis días.
+            </p>
+            <div class="flower-field" id="flowerField"></div>
+        </section>
+
+        <!-- Sección Carta -->
+        <section class="letter-section">
+            <div class="letter">
+                <small>Para ti, Mamá</small>
+                <h2>Palabras de corazón 💙</h2>
+                <p>Hoy quise tomarme un momento para darte las <span class="highlight">gracias por absolutamente todo</span>. Por cada abrazo en los momentos difíciles, por tus consejos sabios y por la dedicación sin límites que siempre me has brindado.</p>
+                <p>Tu valentía y tu bondad son mi mayor ejemplo a seguir. No existen palabras suficientes en el mundo para expresarte todo el orgullo y la gratitud que siento por tenerte como madre.</p>
+                <p>Gracias por ser refugio, guía y apoyo constante. Este pequeño detalle digital es solo una muestra del enorme cariño que te tengo.</p>
+                <p>Deseo de todo corazón que la vida siempre te llene de salud, sonrisas, paz y momentos felices. <span class="highlight">¡Te quiero muchísimo!</span> 🌸✨</p>
+                
+                <div class="signature">
+                    Con todo mi amor y gratitud,<br>
+                    Tu hijo que te adora 🧸💙
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Final -->
+        <section class="final-section">
+            <div class="final-card">
+                <h2>¡Eres la <span>mejor mamá</span> del mundo!</h2>
+                <p>Que nunca te falten razones para sonreír y sentirte feliz. Gracias por iluminar mi camino día a día.</p>
+            </div>
+
+            <div class="bear-display">🧸🌸✨</div>
+        </section>
+    </main>
+
+    <script>
+        // Generar fondo de estrellas/destellos
+        const starsContainer = document.getElementById("stars");
+        for (let i = 0; i < 110; i++) {
+            const star = document.createElement("div");
+            star.className = "star";
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+            star.style.animationDelay = (Math.random() * 3) + "s";
+            starsContainer.appendChild(star);
+        }
+
+        // Función para abrir el detalle
+        function openGift() {
+            document.getElementById("intro").classList.add("hide");
+            populateGarden();
+        }
+
+        // Poblar el jardín con ositos y flores
+        function populateGarden() {
+            const field = document.getElementById("flowerField");
+            field.innerHTML = "";
+            const items = ["🌸", "🧸", "🌹", "💙", "🌻", "🧸", "🌺", "✨"];
+            const count = window.innerWidth < 600 ? 6 : 10;
+
+            for (let i = 0; i < count; i++) {
+                const item = document.createElement("div");
+                item.className = "garden-item";
+                item.textContent = items[i % items.length];
+                field.appendChild(item);
+            }
+        }
+
+        // Efecto de partículas de flores y ositos al hacer clic
+        document.addEventListener("click", function (e) {
+            if (e.target.closest("button")) return;
+            const symbols = ["🧸", "🌸", "💙", "✨", "🌹"];
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement("div");
+                particle.className = "particle";
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.left = e.clientX + "px";
+                particle.style.top = e.clientY + "px";
+                particle.style.setProperty("--x", Math.random());
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 2200);
+            }
+        });
+    </script>
+</body>
+
+</html>
